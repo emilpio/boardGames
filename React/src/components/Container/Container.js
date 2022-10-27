@@ -1,9 +1,9 @@
 import styles from './Container.module.scss'
 
-const Container = prop => {
+const Container = props => {
 return (
   <div className={styles.container}>
-{prop.children}
+{props.children}
   </div>
   )
 
