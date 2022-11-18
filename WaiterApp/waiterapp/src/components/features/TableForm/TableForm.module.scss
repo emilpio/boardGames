@@ -1,0 +1,32 @@
+@use "sass:math";
+@import '../../../styles/settings.scss';
+
+.listForm {
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+}
+
+.span {
+  margin: 15px 15px 15px 15px;
+  padding-right: 20px;
+}
+
+.input,
+.select {
+  width: 100px;
+  border-radius: 5px;
+  padding-top: 12px;
+  padding-right: 5px;
+  padding-bottom: 12px;
+  padding-left: 5px;
+}
+
+ul {
+  text-decoration: none;
+  text-align: left;
+  list-style-type: none;
+}
+
+li {
+  padding: 5px 5px 5px 5px;
+}

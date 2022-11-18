@@ -1,0 +1,62 @@
+    // <form>
+    //   <div>
+    //     <label for='status'>Statusdgdfgs: </label>
+    //     <select id='status'>
+    //       <option value='busy'>Busy</option>
+    //       <option value='free'>Free</option>
+    //       <option value='cleaning'>Cleaning</option>
+    //       <option value='reserved'>Reserved </option>
+    //     </select>
+    //   </div>
+    //   <div>
+    //     <label for='people'>People:</label>
+    //     <input type='text'></input>/<input type='text'></input>
+    //   </div>
+    //   <div>
+    //     <label for='bill'>Bill:</label>
+
+    //     <input type='text' id='bill' name='bil'></input>
+    //   </div>
+    // </form>
+
+
+import styles from './Tables.module.scss';
+import { useSelector } from 'react-redux';
+import { getAllTables } from '../../../redux/TableRedux';
+import { Link } from 'react-router-dom';
+import Button from '../../common/Button/Button';
+import TableForm from '../../features/TableForm/TableForm';
+
+const Tables = (props) => {
+  const tables = useSelector(getAllTables);
+  return (
+    <section className={styles.tables}>
+      <h2 className={styles.heading}>Tables</h2>
+      {tables.map((table) => (
+        <Link
+          key={table.id}
+          to={'table/' + table.id}
+          className={styles.tableLink}>
+          <h3>TABLE {table.id}</h3>
+          <p>
+            Status:<b> {table.status}</b>
+          </p>
+
+          <p>
+            People:<b> {table.peopleAmount}</b>
+          </p>
+          <p>
+            MaxPeople:<b> {table.maxPeopleAmount}</b>
+          </p>
+          <p>
+            Bill:<b> {table.bill}</b>
+          </p>
+          <Button>Show more </Button>
+        </Link>
+      ))}
+      <TableForm />
+    </section>
+  );
+};
+
+export default Tables;
