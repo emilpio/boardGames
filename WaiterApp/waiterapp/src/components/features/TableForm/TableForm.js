@@ -1,5 +1,5 @@
 import styles from './TableForm.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { update } from '../../../redux/TableRedux';
 import Button from '../../common/Button/Button';
@@ -15,21 +15,27 @@ const TableForm = (props) => {
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount);
   const [bill, setBill] = useState(props.bill);
 
-  // if (status === 'Busy') {
-  //   setBill(1);
-  // }
+  // useEffect(() => {
+  //   if (status === 'Busy') {
+  //     setBill(0);
+  //   } else if (status === 'Free' || 'Cleaning') {
+  //     setPeopleAmount(0);
+  //   }
+  // }, [status]);
 
-  if (maxPeopleAmount > 10 || peopleAmount > 10) {
-    alert('Max People 10');
-    setMaxPeopleAmount('');
-    setPeopleAmount('');
-  } else if (maxPeopleAmount < 0 || peopleAmount < 0) {
-    setMaxPeopleAmount('');
-    setPeopleAmount('');
-  } else if (peopleAmount > maxPeopleAmount) {
-    alert('WARNING!!! People cannot be higher than MaxPeople ');
-    setPeopleAmount(maxPeopleAmount);
-  }
+  useEffect(() => {
+    if (maxPeopleAmount > 10 || peopleAmount > 10) {
+      alert('Max People 10');
+      setMaxPeopleAmount('');
+      setPeopleAmount('');
+    } else if (maxPeopleAmount < 0 || peopleAmount < 0) {
+      setMaxPeopleAmount('');
+      setPeopleAmount('');
+    } else if (peopleAmount > maxPeopleAmount) {
+      alert('WARNING!!! People cannot be higher than MaxPeople ');
+      setPeopleAmount(maxPeopleAmount);
+    }
+  }, [maxPeopleAmount, peopleAmount]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +51,7 @@ const TableForm = (props) => {
         <li>
           <span className={styles.span}>Status:</span>
           <select
-            className={styles.input}
+            className={styles.input_select}
             type='select'
             value={status}
             onChange={(e) => setStatus(e.target.value)}>
@@ -73,17 +79,18 @@ const TableForm = (props) => {
         </li>
         <li>
           <span className={styles.span}>Bill:</span>
-
+          $
           <input
-            className={styles.input}
+            className={styles.input_last}
             type='number'
             value={bill}
             onChange={(e) => setBill(e.target.value)}
+            
           />
         </li>
         <li>
           {' '}
-          <Button>Update</Button>
+          <Button className={styles.button}>Update</Button>
         </li>
       </ul>
 

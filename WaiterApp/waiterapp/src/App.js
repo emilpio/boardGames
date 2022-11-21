@@ -7,8 +7,6 @@ import Header from './components/pages/Header/Header';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchTables } from './redux/TableRedux';
-import NotFound from '../../waiterapp/src/components/views/NotFound/NotFound';
-import Spinner from 'react-bootstrap/Spinner';
 
 const App = () => {
   const dispatch = useDispatch();

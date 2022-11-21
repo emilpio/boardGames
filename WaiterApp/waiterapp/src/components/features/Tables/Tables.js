@@ -1,37 +1,37 @@
 import styles from './Tables.module.scss';
 import { useSelector } from 'react-redux';
 import { getAllTables } from '../../../redux/TableRedux';
-import { Link } from 'react-router-dom';
 import Button from '../../common/Button/Button';
+import { Table } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 const Tables = (props) => {
   const tables = useSelector(getAllTables);
   return (
-    <section className={styles.tables}>
-      <h2 className={styles.heading}>Tables</h2>
-      {tables.map((table) => (
-        <Link
-          key={table.id}
-          to={'table/' + table.id}
-          className={styles.tableLink}>
-          <h3>TABLE {table.id}</h3>
-          <p>
-            Status:<b> {table.status}</b>
-          </p>
-
-          <p>
-            People:<b> {table.peopleAmount}</b>
-          </p>
-          <p>
-            MaxPeople:<b> {table.maxPeopleAmount}</b>
-          </p>
-          <p>
-            Bill:<b> {table.bill}</b>
-          </p>
-          <Button>Show more </Button>
-        </Link>
-      ))}
-    </section>
+    <div>
+      <h2 className={styles.heading}>All Tables</h2>
+      <Table hover>
+        <tbody>
+          {tables.map((table) => (
+            <tr key={table.id}>
+              <td>
+                <h3>
+                  <b>Table</b> {table.id}
+                </h3>
+              </td>
+              <td>
+                <b>Status:</b> {table.status}
+              </td>
+              <td>
+                <NavLink to={'/table/' + table.id}>
+                  <Button classname={styles.button}>Show more</Button>
+                </NavLink>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
   );
 };
 

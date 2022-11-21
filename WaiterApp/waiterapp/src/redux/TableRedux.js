@@ -1,5 +1,5 @@
 import shortid from 'shortid';
-import { useDispatch } from 'react-redux';
+import { API_URL } from '../config';
 
 //selectors
 export const getAllTables = ({ tables }) => tables;
@@ -26,7 +26,7 @@ export const updateTables = (payload) => ({ type: UPDATE_TABLES, payload });
 export const update = (payload) => ({ type: UPDATE, payload });
 
 export const fetchTables = (dispatch) => {
-  fetch('http://localhost:3131/api/tables')
+  fetch(`${API_URL}/tables`)
     .then((res) => res.json())
     .then((tables) => dispatch(updateTables(tables)));
 };
